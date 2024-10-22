@@ -1,4 +1,5 @@
 package com.unu.poo2.controllers;
+import com.unu.poo2.beans.*;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -6,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -80,8 +82,14 @@ public class AutorController extends HttpServlet {
 	
 	protected void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("listaAutores", modelo.listarAutores());
+
 		
 		try {
+			Iterator<Autor> it = modelo.listarAutores().iterator();
+			while(it.hasNext()) {
+				Autor a = it.next();
+				System.out.println(a.getNombre()+" "+a.getId()+" "+a.getNacionalidad());
+			}
 			request.getRequestDispatcher(ListarURL).forward(request, response);
 		} catch (ServletException | IOException ex) {
 			Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
