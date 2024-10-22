@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ import com.unu.poo2.models.AutorModel;
 public class AutorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String ListarURL = "/autores/listarAutores/.jsp";
+	private static final String ListarURL = "/autores/listarAutores.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,36 +32,40 @@ public class AutorController extends HttpServlet {
     
     AutorModel modelo = new AutorModel();
     
-    public void request(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
-		if(request.getParameter("op") == null){
-			listar(request,response);
+		try (PrintWriter out = response.getWriter()) {	
+			if(request.getParameter("op") == null){
+				listar(request,response);
+			} 
+			
+			String operacion = request.getParameter("op");	
+			
+			switch (operacion) {
+			case "listar": 
+				listar(request,response);
+				break;
+			
+			 /*
+			 case "nuevo":
+				 request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
+			 break;
+			 case "insertar":
+				 insertar(request, response);
+			 break;
+			 case "obtener":
+				 obtener(request, response);
+			 break;
+			 case "modificar":
+				 modificar(request, response);
+			 break;
+			 case "eliminar":
+				 eliminar(request, response);
+			 break;*/
+			 }	
 		}
-		String operacion = request.getParameter("op");	
 		
-		switch (operacion) {
-		case "listar": {
-			listar(request,response);
-			break;
-		}
-		 /*
-		 case "nuevo":
-			 request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
-		 break;
-		 case "insertar":
-			 insertar(request, response);
-		 break;
-		 case "obtener":
-			 obtener(request, response);
-		 break;
-		 case "modificar":
-			 modificar(request, response);
-		 break;
-		 case "eliminar":
-			 eliminar(request, response);
-		 break;*/
-		 }
     }
     
 	/**
@@ -69,6 +74,7 @@ public class AutorController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
 	/**
@@ -77,6 +83,7 @@ public class AutorController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		processRequest(request, response);
 	}
 
 	
