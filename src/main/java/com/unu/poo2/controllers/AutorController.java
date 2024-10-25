@@ -53,7 +53,7 @@ public class AutorController extends HttpServlet {
 			 break;
 			 
 			 case "insertar":
-				 //insertar(request, response);
+				 insertar(request, response);
 			 break;
 			 
 			 /*
@@ -106,4 +106,16 @@ public class AutorController extends HttpServlet {
 		
 	}
 	
+	protected void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+				Autor autor = new Autor();
+				autor.setNombre(request.getParameter("nombre"));
+				autor.setNacionalidad(request.getParameter("nacionalidad"));
+				
+				
+				request.getRequestDispatcher(ListarURL).forward(request, response);
+		} catch (ServletException | IOException ex) {
+			ex.getStackTrace();
+		}
+	}
 }

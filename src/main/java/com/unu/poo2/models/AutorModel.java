@@ -35,5 +35,14 @@ public class AutorModel extends Conexion{
 			return null;
 		}	
 	}
+
 	
+	public int agregarAutor(){
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
 }
