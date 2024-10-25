@@ -47,13 +47,16 @@ public class AutorController extends HttpServlet {
 				listar(request,response);
 				break;
 			
-			 /*
+			 
 			 case "nuevo":
 				 request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
 			 break;
+			 
 			 case "insertar":
-				 insertar(request, response);
+				 //insertar(request, response);
 			 break;
+			 
+			 /*
 			 case "obtener":
 				 obtener(request, response);
 			 break;
@@ -89,7 +92,6 @@ public class AutorController extends HttpServlet {
 	
 	protected void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("listaAutores", modelo.listarAutores());
-
 		
 		try {
 			Iterator<Autor> it = modelo.listarAutores().iterator();

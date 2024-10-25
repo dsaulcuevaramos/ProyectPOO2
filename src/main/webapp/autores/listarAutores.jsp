@@ -7,11 +7,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+
 </head>
+
+
+<% String url = "http://localhost:8080/ProyectPOO2/"; %>
+<a type="button" href="<%=url%>AutorController?op=nuevo"> NUEVO </a>
+
+
 <body>
-	<table id="tabla">
+	<hr>
+	<table border=1 id="tabla">
 	 <thead>
 		 <tr>
 			<th>Codigo del autor</th>
