@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 
-<% String url = "http://localhost:8080/ProyectPOO2/"; %>
+<% String URL = "http://localhost:8080/ProyectPOO2/"; %>
 
 <body>
 
 	<h3>NUEVO AUTOR</h3>
-	<form role="form" action="<%=url%>AutorController" method="POST">
+	<form role="form" action="<%=URL%>AutorController" method="POST">
 	
 	<input type="hidden" name="op" value="insertar">
 	<div style="display:inline-block; color:red; background: gray; text-align: center;" >
@@ -29,11 +29,11 @@
 	</div>
 	
 	</form>
-		<b> <a href="<%=url%>AutorController?op=listar">RETORNAR</a></b>
+		<b> <a href="<%=URL%>AutorController?op=listar">RETORNAR</a></b>
 		<hr>
 		hola
 		<hr>
-		carajo
+		como está
 		<hr>
 		:)
 </body>

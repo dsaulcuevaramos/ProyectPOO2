@@ -14,8 +14,8 @@
 </head>
 
 
-<% String url = "http://localhost:8080/ProyectPOO2/"; %>
-<a type="button" href="<%=url%>AutorController?op=nuevo"> NUEVO </a>
+<% String URL = "http://localhost:8080/ProyectPOO2/"; %>
+<a type="button" href="<%=URL%>AutorController?op=nuevo"> NUEVO </a>
 
 
 <body>
@@ -42,7 +42,10 @@
 				 <td><%= autor.getId() %></td>
 				 <td><%= autor.getNombre()%></td>
 				 <td><%= autor.getNacionalidad()%></td>
-				 <td></td>
+				 <td>
+				 	<a type="button" href="<%=URL%>AutorController?op=obtener&id=<%=autor.getId()%>"> MODIFICAR </a>
+					<a type="button" href="<%=URL%>AutorController?op=eliminar&id=<%=autor.getId()%>"> ELIMINAR </a>
+				 </td>
 			 </tr>
         <%
             }
