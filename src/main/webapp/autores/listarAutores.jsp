@@ -11,16 +11,29 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 
+	<link href="autorStyle.css" type="text/css" rel="styleheet">
 </head>
 
-
 <% String URL = "http://localhost:8080/ProyectPOO2/"; %>
-<a type="button" href="<%=URL%>AutorController?op=nuevo"> NUEVO </a>
+
 
 
 <body>
+
+	<div id="hola">
+		<div  style="display: flex;">
+		<img alt="IMAGEN" src="">		
+		<div>
+			<a type="button" href="<%=URL%>AutorController?op=nuevo">_ NUEVO _</a>
+		</div>	
+		</div>	
+		
+	</div>
+
 	<hr>
-	<table border=1 id="tabla">
+	<div >
+	
+	<table border=1 id="tabla" style="padding: 50px">
 	 <thead>
 		 <tr>
 			<th>Codigo del autor</th>
@@ -66,6 +79,9 @@
 		
  	</tbody>
  </table>
+	
+	
+	</div>
 	
 </body>
 </html>

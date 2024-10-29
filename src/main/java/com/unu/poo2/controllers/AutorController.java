@@ -180,12 +180,12 @@ public class AutorController extends HttpServlet {
 			autortemp.setNacionalidad(request.getParameter("nacionalidad"));
 
 			if (modelo.modificarAutor(autortemp) > 0) {
-				request.getSession().setAttribute("exito", "autor registrado correctamente");
+				request.getSession().setAttribute("exito", "autor modificado correctamente");
 			} else {
 				request.getSession().setAttribute("fracaso",
-						"El autor no ha sido ingresado" + "ya hay un autor con este codigo");
+						"El autor no ha sido modificado" + "ya hay un autor con este codigo");
 			}
-			response.sendRedirect(request.getContextPath() + "/AutorController?op=listar"); // ojo revisar esto
+			response.sendRedirect(request.getContextPath() + "/AutorController?op=listar");
 
 		} catch (SQLException | IOException ex) { //
 			Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,7 +194,18 @@ public class AutorController extends HttpServlet {
 
 	protected void eliminar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-
+		try {
+			int idtemp = Integer.parseInt(request.getParameter("id"));
+			if(modelo.eliminarAutor(idtemp)>0) {
+				request.getSession().setAttribute("exito", "autor eliminado correctamente");
+			}else {
+				request.getSession().setAttribute("fracaso",
+						"El autor no ha sido eliminado" + "ya hay un autor con este codigo");
+			}
+			response.sendRedirect(request.getContextPath() + "/AutorController?op=listar"); 
+		}catch (SQLException | IOException ex) {
+			Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 }
