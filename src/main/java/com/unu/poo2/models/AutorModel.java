@@ -109,16 +109,17 @@ public class AutorModel extends Conexion{
 	public Autor obtenerAutor(int idAutor) throws SQLException {
 		
 		sql = "CALL sp_obtenerAutor(?)";
-		
+
 		try {
-			cs = conexion.prepareCall(sql);
+			this.openConexion();
+			cs = conexion.prepareCall(sql);	
 			cs.setInt(1, idAutor);
 			rs = cs.executeQuery();
 			if(rs.next()) {
 				Autor autorTemp = new Autor();
 				autorTemp.setId(rs.getInt("idAutor"));
 				autorTemp.setNombre(rs.getString("nombre"));
-				autorTemp.setNombre(rs.getString("nacionalidad"));
+				autorTemp.setNacionalidad(rs.getString("nacionalidad"));
 				this.closeConnexion();
 				return autorTemp;
 			}

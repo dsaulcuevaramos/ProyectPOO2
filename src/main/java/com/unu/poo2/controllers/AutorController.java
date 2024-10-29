@@ -133,11 +133,11 @@ public class AutorController extends HttpServlet {
 
 	protected void insertar(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			Autor autor = new Autor();
-			autor.setNombre(request.getParameter("nombre"));
-			autor.setNacionalidad(request.getParameter("nacionalidad"));
+			Autor autortemp = new Autor();
+			autortemp.setNombre(request.getParameter("nombre"));
+			autortemp.setNacionalidad(request.getParameter("nacionalidad"));
 
-			if (modelo.insertarAutor(autor) > 0) {
+			if (modelo.insertarAutor(autortemp) > 0) {
 				request.getSession().setAttribute("exito", "autor registrado correctamente");
 			} else {
 				request.getSession().setAttribute("fracaso",
@@ -161,8 +161,8 @@ public class AutorController extends HttpServlet {
 			if(autortemp != null) {
 				request.setAttribute("autor", autortemp);
 				request.getRequestDispatcher("/autores/editarAutor.jsp").forward(request, response);
-			}else{
-				response.sendRedirect(request.getContextPath() + "/error404.jsp");
+			}else{			
+				request.getRequestDispatcher("/autores/listarAutores.jsp").forward(request, response);
 			}
 			
 		} catch (Exception ex) {
@@ -174,11 +174,12 @@ public class AutorController extends HttpServlet {
 	protected void modificar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		try {
-			Autor autor = new Autor();
-			autor.setNombre(request.getParameter("nombre"));
-			autor.setNacionalidad(request.getParameter("nacionalidad"));
+			Autor autortemp = new Autor();
+			autortemp.setId(Integer.parseInt(request.getParameter("idautor")));
+			autortemp.setNombre(request.getParameter("nombre"));
+			autortemp.setNacionalidad(request.getParameter("nacionalidad"));
 
-			if (modelo.modificarAutor(autor) > 0) {
+			if (modelo.modificarAutor(autortemp) > 0) {
 				request.getSession().setAttribute("exito", "autor registrado correctamente");
 			} else {
 				request.getSession().setAttribute("fracaso",
