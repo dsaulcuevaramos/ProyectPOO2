@@ -1,5 +1,4 @@
 package com.unu.poo2.models;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,8 +29,5 @@ public class Conexion {
 			}
 		} catch (SQLException e) {			
 			e.printStackTrace();
-		}
-	}
-	
-	
-}
+}}}
+

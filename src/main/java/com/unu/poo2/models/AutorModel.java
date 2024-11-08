@@ -10,7 +10,6 @@ import oracle.jdbc.driver.parser.util.Array;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class AutorModel extends Conexion{
 
 	CallableStatement cs;
@@ -20,10 +19,8 @@ public class AutorModel extends Conexion{
 	private String sql;
 	
 	public List<Autor> listarAutores() throws SQLException {
-		
 		List<Autor> lista = new ArrayList<>();	
 		sql = "CALL sp_listarAutores()";
-		
 		try {
 			this.openConexion();
 			cs = conexion.prepareCall(sql);
@@ -45,8 +42,7 @@ public class AutorModel extends Conexion{
 	}
 
 	
-	public int insertarAutor(Autor autor) throws SQLException {
-		
+	public int insertarAutor(Autor autor) throws SQLException {	
 		int filasAfectadas = 0;
 		sql = "CALL sp_insertarAutor(?,?)";
 		
@@ -66,7 +62,6 @@ public class AutorModel extends Conexion{
 	}
 	
 	public int modificarAutor(Autor autor) throws SQLException {
-		
 		int filasAfectadas = 0;
 		sql = "CALL sp_modificarAutor(?,?,?)";
 		
@@ -86,11 +81,9 @@ public class AutorModel extends Conexion{
 		}
 	}
 	
-	public int eliminarAutor(int idAutor) throws SQLException {
-		
+	public int eliminarAutor(int idAutor) throws SQLException {	
 		int filasAfectadas = 0;
 		sql = "CALL sp_eliminarAutor(?)";
-		
 		try {
 			this.openConexion();
 			cs = conexion.prepareCall(sql);
@@ -106,10 +99,8 @@ public class AutorModel extends Conexion{
 		
 	}
 	
-	public Autor obtenerAutor(int idAutor) throws SQLException {
-		
+	public Autor obtenerAutor(int idAutor) throws SQLException {		
 		sql = "CALL sp_obtenerAutor(?)";
-
 		try {
 			this.openConexion();
 			cs = conexion.prepareCall(sql);	
@@ -125,20 +116,18 @@ public class AutorModel extends Conexion{
 			}
 			this.openConexion();
 			return null;
-			
 		} catch (SQLException ex) {
 			Logger.getLogger(AutorModel.class.getName()).log(Level.SEVERE, null, ex);
 			this.closeConnexion();
 			return null;
-		}
-		
+		}	
 	}
+	
 	
 	public int totalAutores() throws SQLException {
 		
 		int totala = 0;	
-		sql = "SELECT COUNT(codigo) as totala FROM autor";
-		
+		sql = "SELECT COUNT(codigo) as totala FROM autor";	
 		try {		
 			this.openConexion();
 			st = conexion.prepareStatement(sql);

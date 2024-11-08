@@ -17,4 +17,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>EditorialController</display-name>
+    <servlet-name>EditorialController</servlet-name>
+    <servlet-class>com.unu.poo2.controllers.EditorialController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditorialController</servlet-name>
+    <url-pattern>/EditorialController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibroController</display-name>
+    <servlet-name>LibroController</servlet-name>
+    <servlet-class>com.unu.poo2.controllers.LibroController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibroController</servlet-name>
+    <url-pattern>/LibroController</url-pattern>
+  </servlet-mapping>
 </web-app>

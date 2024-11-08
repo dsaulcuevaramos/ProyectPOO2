@@ -20,25 +20,13 @@ import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import com.unu.poo2.beans.Autor;
 import com.unu.poo2.models.AutorModel;
 
-
-/**
- * Servlet implementation class AutorController
- */
 public class AutorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	private static final String ListarURL = "/autores/listarAutores.jsp";
-
-	/**	
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public AutorController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
 	AutorModel modelo = new AutorModel();
-
 	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		response.setContentType("text/html;charset=UTF-8");
@@ -48,10 +36,10 @@ public class AutorController extends HttpServlet {
 				listar(request, response);
 				return;
 			}
-
 			String operacion = request.getParameter("op");
-
+	
 			switch (operacion) {
+			
 			case "listar":
 				listar(request, response);
 				break;
@@ -59,10 +47,8 @@ public class AutorController extends HttpServlet {
 			case "nuevo":
 				request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
 				break;
-
 			case "insertar":
 				insertar(request, response);
-				// listar(request, response); //ojo revisar esto en clase
 				break;
 
 			case "obtener":
@@ -84,13 +70,10 @@ public class AutorController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+			throws ServletException, IOException {	
 		try {
 			processRequest(request, response);
 		} catch (ServletException | IOException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -114,16 +97,7 @@ public class AutorController extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 
 		try {
-
 			request.setAttribute("listaAutores", modelo.listarAutores());
-			
-			/*
-			Iterator<Autor> it = modelo.listarAutores().iterator();
-			while (it.hasNext()) {
-				Autor a = it.next();
-				System.out.println(a.getNombre() + " " + a.getId() + " " + a.getNacionalidad());
-			}
-			*/
 			request.getRequestDispatcher(ListarURL).forward(request, response);
 		} catch (ServletException | IOException ex) {
 			Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,12 +137,10 @@ public class AutorController extends HttpServlet {
 				request.getRequestDispatcher("/autores/editarAutor.jsp").forward(request, response);
 			}else{			
 				request.getRequestDispatcher("/autores/listarAutores.jsp").forward(request, response);
-			}
-			
+			}	
 		} catch (Exception ex) {
 			Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
 	}
 
 	protected void modificar(HttpServletRequest request, HttpServletResponse response)
@@ -191,6 +163,7 @@ public class AutorController extends HttpServlet {
 			Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
+	
 
 	protected void eliminar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {

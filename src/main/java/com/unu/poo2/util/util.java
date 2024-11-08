@@ -1,5 +1,5 @@
 package com.unu.poo2.util;
 
-public class util {
+public class util{
 
 }

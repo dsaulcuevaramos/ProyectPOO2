@@ -1,3 +1,4 @@
+<%@page import="com.unu.poo2.beans.Editorial"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.unu.poo2.beans.Autor"%>
@@ -22,7 +23,6 @@
 
 	}
 %>
-
 <body>
 
 	<form role="form" action="<%=URL%>AutorController" method="POST">

@@ -11,28 +11,19 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 
-	<link href="autorStyle.css" type="text/css" rel="styleheet">
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="../bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 
-<% String URL = "http://localhost:8080/ProyectPOO2/"; %>
+<% String URL = "http://localhost:8080/ProyectPOO2/"; %>	
 
 
 
 <body>
-
-	<div id="hola">
-		<div  style="display: flex;">
-		<img alt="IMAGEN" src="">		
-		<div>
-			<a type="button" href="<%=URL%>AutorController?op=nuevo">_ NUEVO _</a>
-		</div>	
-		</div>	
-		
-	</div>
-
-	<hr>
-	<div >
 	
+	<a type="button" href="<%=URL%>AutorController?op=nuevo">_ NUEVO _</a>	
+	<hr>
+	<div>
 	<table border=1 id="tabla" style="padding: 50px">
 	 <thead>
 		 <tr>

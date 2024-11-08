@@ -15,7 +15,6 @@
 	<form role="form" action="<%=URL%>AutorController" method="POST">
 	
 	<input type="hidden" name="op" value="insertar">
-	<div style="display:inline-block; color:red; background: gray; text-align: center;" >
 	
 		<label  for="nombre">Nombre:</label>
 		<input type=text name="nombre" id="nombre">
@@ -25,11 +24,10 @@
 		<br><br>
 		<input type="submit" name="guardar" id="guardar" value="Agregar Autor">
 		<br><br>
-	
-	</div>
-	
 	</form>
-		<b> <a href="<%=URL%>AutorController?op=listar">RETORNAR</a></b>
+	<b> <a href="<%=URL%>AutorController?op=listar">RETORNAR</a></b>
+	
+	
 		<hr>
 		hola
 		<hr>
