@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 
-<%String URL="http://localhost:8080/ProyectPOO2/"; %>
 
 <body>
+	
+	<%@ include file='/cabecera.jsp' %>
 	
 	<div>
 	

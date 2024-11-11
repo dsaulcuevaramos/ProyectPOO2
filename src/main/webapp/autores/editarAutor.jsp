@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 
-<% String URL = "http://localhost:8080/ProyectPOO2/"; 
+<%
 
 	Autor autor;
 	HttpSession sesion = request.getSession();
@@ -24,6 +24,8 @@
 	}
 %>
 <body>
+	
+	<%@ include file='/cabecera.jsp' %>
 
 	<form role="form" action="<%=URL%>AutorController" method="POST">
 	

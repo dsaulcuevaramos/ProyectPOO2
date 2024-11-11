@@ -5,10 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<% String URL="http://localhost:8080/ProyectPOO2//autores/listarAutores.jsp";%>
 
 </head>
 <body>
-	<a href="<%=URL%>">ENTRA AQUI CARAJO</a>
+
+	<div>
+		
+		<%@ include file='/cabecera.jsp' %>
+	
+	</div>
+
+
+   
+    
 </body>
 </html>

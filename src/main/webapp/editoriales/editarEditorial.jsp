@@ -9,11 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-	
-	<%String URL = "http://localhost:8080/ProyectPOO2/"; %>
 
 <body>
-	
+	<%@ include file='/cabecera.jsp' %>
 	
 <% 	Editorial editorial;
 	HttpSession sesion = request.getSession();
@@ -26,21 +24,36 @@
 	
 %>
 	
+	<div class="container">
+	
 	<form role="form" action="<%=URL%>EditorialController" method="POST">
 		<input type="hidden" name="op" value="modificar">
 		<input type="hidden" name="ideditorial" value="<%=editorial.getIdEditorial()%>">
 		
 		<h1>REGISTRO DE EDITORIAL</h1>
 		
-		id <input contenteditable="false" type="text" name="ideditorial" value="<%=editorial.getIdEditorial()%>"/>
-		nombre<input type="text" name="nombre" value="<%=editorial.getNombre()%>">
-		contacto<input type="text" name="contacto" value="<%=editorial.getContacto()%>">
-		telefono<input type="text" name="telefono" value="<%=editorial.getTelefono()%>">
+		<div class="form-group">
+			id <input class="form-control"  type="text" name="ideditorial" value="<%=editorial.getIdEditorial()%>"/>
+		</div>
+		<div class="form-group">
+			nombre<input class="form-control"  type="text" name="nombre" value="<%=editorial.getNombre()%>">
+		</div>
+		<div class="form-group">
+			contacto<input class="form-control"  type="text" name="contacto" value="<%=editorial.getContacto()%>">
+		</div>
+		<div class="form-group">
+			telefono<input class="form-control" type="text" name="telefono" value="<%=editorial.getTelefono()%>">
+		</div>
+		
+		<hr>
 		
 		<input type="submit" value="Guardar" name="Guardar">
 		
 	</form>
 	<a href="<%=URL%>EditorialController?op=listar" >CANCELAR</a>
+	
+	
+	</div>
 	
 </body>
 </html>

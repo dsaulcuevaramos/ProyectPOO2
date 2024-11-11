@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 
-<% String URL = "http://localhost:8080/ProyectPOO2/"; %>
-
 <body>
+	
+	<%@ include file='/cabecera.jsp' %>
 
 	<h3>NUEVO AUTOR</h3>
 	<form role="form" action="<%=URL%>AutorController" method="POST">
