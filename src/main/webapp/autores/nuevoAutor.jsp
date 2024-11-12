@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,12 +8,56 @@
 <title>Insert title here</title>
 </head>
 
+
+<script>
+	function validarFormulario(){
+		
+		const respuesta = confirm('estas seguro de guardar?');
+		const nombre = document.getElementById('nombre').value.trim();
+		const nacionalidad = document.getElementById('nacionalidad').value.trim();
+		
+		if(respuesta){
+			if(nombre === ''){
+			alert('ingrese nombre del autor');
+			document.getElementById('nombre').focus();
+			return false;
+			}
+			if(nacionalidad === ''){
+				alert('Ingese la nacionalidad del autor');
+				document.getElementById('nacionalidad').focus();
+				return false;
+			}
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+</script>
+
+
 <body>
 	
 	<%@ include file='/cabecera.jsp' %>
 
 	<h3>NUEVO AUTOR</h3>
-	<form role="form" action="<%=URL%>AutorController" method="POST">
+	
+	<%
+	if(request.getAttribute("respuesta") != null){
+		boolean res = (boolean) request.getAttribute("respuesta");
+		if(res){
+			List<String> listaError = (List<String>) request.getAttribute("listaError");
+			
+			for(String error : listaError){
+	%>
+	<span><%=error %></span>
+	<%		
+	}	
+	}
+	}
+	%>
+	
+	<form role="form" action="<%=URL%>AutorController" method="POST" onsubmit="return validarFormulario()">
 	
 	<input type="hidden" name="op" value="insertar">
 	

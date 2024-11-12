@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,7 +93,7 @@ public class AutorController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	
 	protected void listar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
@@ -105,20 +106,26 @@ public class AutorController extends HttpServlet {
 
 	}
 
-	protected void insertar(HttpServletRequest request, HttpServletResponse response) {
+	protected void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		try {
-			Autor autortemp = new Autor();
-			autortemp.setNombre(request.getParameter("nombre"));
-			autortemp.setNacionalidad(request.getParameter("nacionalidad"));
+			
+			if(!validar(request, response)) {
+				Autor autortemp = new Autor();
+				autortemp.setNombre(request.getParameter("nombre"));
+				autortemp.setNacionalidad(request.getParameter("nacionalidad"));
 
-			if (modelo.insertarAutor(autortemp) > 0) {
-				request.getSession().setAttribute("exito", "autor registrado correctamente");
-			} else {
-				request.getSession().setAttribute("fracaso",
-						"El autor no ha sido ingresado" + "ya hay un autor con este codigo");
+				if (modelo.insertarAutor(autortemp) > 0) {
+					request.getSession().setAttribute("exito", "autor registrado correctamente");
+				} else {
+					request.getSession().setAttribute("fracaso",
+							"El autor no ha sido ingresado" + "ya hay un autor con este codigo");
+				}
+				response.sendRedirect(request.getContextPath() + "/AutorController?op=listar");
+
+			}else {
+				request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
 			}
-			response.sendRedirect(request.getContextPath() + "/AutorController?op=listar"); // ojo revisar esto
-
+			
 		} catch (SQLException | IOException ex) { //
 			Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -181,4 +188,26 @@ public class AutorController extends HttpServlet {
 		}
 	}
 
+	
+	private boolean validar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		boolean res = false;
+		List<String> listError = new ArrayList<>();
+		try {
+			if (request.getParameter("nombre").equals("")) {
+				res = true;
+				listError.add("Ingrese el nombre del autor");
+			}if(request.getParameter("nacionalidad").equals("")){
+				res = true;
+				listError.add("Ingrese la nacionalidad del autor");
+			}
+			request.setAttribute("respuesta", res);
+			request.setAttribute("listaError", listError);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return res;
+	}
+	
 }
